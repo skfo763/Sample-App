@@ -1,0 +1,57 @@
+// library dependencies
+ext {
+    corektx = '1.3.2'
+    activityktx = '1.2.2'
+    fragmentktx = '1.3.3'
+    lifecycleext='2.2.0'
+    appcompat = '1.2.0'
+    constraintlayout = '2.0.4'
+    material = '1.2.1'
+    paging = '3.0.0-rc01'
+    recyclerview = '1.2.0'
+    datastore = '1.0.0-beta01'
+    webkit='1.4.0'
+    glide = '4.11.0'
+    navVersion = "2.3.5"
+    rxBinding = '4.0.0'
+    roomVersion = "2.3.0"
+
+    androidComponentDependencies = [
+            "androidx.core:core-ktx:$corektx",
+            "androidx.activity:activity-ktx:$activityktx",
+            "androidx.fragment:fragment-ktx:$fragmentktx",
+            "androidx.lifecycle:lifecycle-extensions:$lifecycleext",
+            "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleext",
+            "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleext",
+            "androidx.navigation:navigation-fragment-ktx:$navVersion",
+            "androidx.navigation:navigation-ui-ktx:$navVersion",
+            "androidx.navigation:navigation-testing:$navVersion",
+            "androidx.appcompat:appcompat:$appcompat",
+            "androidx.constraintlayout:constraintlayout:$constraintlayout",
+            "androidx.webkit:webkit:$webkit",
+            "androidx.paging:paging-runtime:$paging",
+            "androidx.datastore:datastore:$datastore",
+            "androidx.recyclerview:recyclerview:$recyclerview",
+            "com.google.android.material:material:$material",
+            "com.github.bumptech.glide:glide:$glide"
+    ]
+
+    customUiDependencies = [
+
+    ]
+
+    rxComponentDependencies = [
+            "androidx.paging:paging-rxjava3:$paging",
+            "androidx.datastore:datastore-rxjava3:$datastore",
+            "com.jakewharton.rxbinding4:rxbinding:$rxBinding",
+            "com.jakewharton.rxbinding4:rxbinding-core:$rxBinding",
+            "com.jakewharton.rxbinding4:rxbinding-appcompat:$rxBinding",
+            "com.jakewharton.rxbinding4:rxbinding-recyclerview:$rxBinding",
+            "com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:$rxBinding",
+            "com.jakewharton.rxbinding4:rxbinding-viewpager2:$rxBinding",
+            "com.jakewharton.rxbinding4:rxbinding-material:$rxBinding"
+    ]
+
+
+
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="skfo763.ably.assignment.main.data.ProductItem.ItemType"/>
+        <variable
+            name="productItem"
+            type="skfo763.ably.assignment.main.data.ProductItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/product_card_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintDimensionRatio="1:1.2"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/actual_price">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                imageUrl="@{productItem.imageUrl}"
+                tools:src="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/like_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:visibility="@{productItem.itemType == ItemType.PRODUCT ? View.VISIBLE : View.GONE}"
+                android:src="@{productItem.liked ? @drawable/ic_icon_card_zzim_selected : @drawable/ic_icon_card_zzim}"
+                android:layout_gravity="top|end"
+                android:onClick="@{(v) -> productItem.onLikeClickListener.invoke(productItem)}"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/discount_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff5160"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="4dp"
+            android:text="@{@string/percent(productItem.discountRate)}"
+            android:visibility="@{productItem.discountRate == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/actual_price"
+            app:layout_constraintBottom_toBottomOf="@+id/actual_price"
+            app:layout_constraintTop_toTopOf="@+id/actual_price"
+            tools:text="10\%" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actual_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:text="@{@string/price_format(productItem.price)}"
+            app:layout_constraintStart_toEndOf="@id/discount_rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/product_name"
+            app:layout_constraintTop_toBottomOf="@id/product_card_view"
+            tools:text="8,700" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#777777"
+            android:textSize="11sp"
+            android:layout_marginBottom="8dp"
+            android:text="@{productItem.productName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/selling_count"
+            app:layout_constraintTop_toBottomOf="@+id/actual_price"
+            tools:ignore="SmallSp"
+            tools:text="[가격실화?!] 가성비 대박 쿨틀…" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/new_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_img_badge_new"
+            android:gravity="center"
+            android:text="@string/badge_new"
+            android:textColor="@color/black"
+            android:textSize="9sp"
+            android:layout_marginEnd="5dp"
+            android:visibility="@{productItem.isNew ? View.VISIBLE : View.GONE}"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/selling_count"
+            app:layout_constraintBottom_toBottomOf="@+id/selling_count"
+            app:layout_constraintTop_toTopOf="@+id/selling_count"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/selling_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#777777"
+            android:textSize="11sp"
+            android:text="@{@string/selling_count(productItem.sellingCount)}"
+            app:layout_constraintStart_toEndOf="@id/new_badge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_name"
+            tools:ignore="SmallSp"
+            tools:text="1,023개 구매중" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

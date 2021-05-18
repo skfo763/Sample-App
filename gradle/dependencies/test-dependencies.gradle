@@ -1,0 +1,16 @@
+ext {
+
+    junit = '4.13.2'
+    junitAndroid = '1.1.2'
+    espresso = '3.3.0'
+
+    testDependencies = [
+            "junit:junit:$junit"
+    ]
+
+    androidTestDependencies = [
+            "androidx.test.ext:junit:$junitAndroid",
+            "androidx.test.espresso:espresso-core:$espresso"
+    ]
+
+}

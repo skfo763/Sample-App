@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="activityViewModel"
+            type="skfo763.ably.assignment.main.viewmodel.HomeActivityViewModel"/>
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/product_swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        isSwipe="@{activityViewModel.swipeLoading}">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            productItemList="@{activityViewModel.productItemList}"
+            additionalProductItemList="@{activityViewModel.additionalProductItemList}"
+            likedItem="@{activityViewModel.productLikeResult}"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

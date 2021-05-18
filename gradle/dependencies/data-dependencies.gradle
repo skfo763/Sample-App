@@ -1,0 +1,38 @@
+ext {
+    navigation='2.3.2'
+    roomversion='2.2.6'
+    roomdebug='1.0.6'
+    datastore='1.0.0-alpha06'
+    retrofit = '2.9.0'
+    moshi = '1.11.0'
+    stetho = '1.5.1'
+    logginginterceptor = '4.9.0'
+    roomDebugger = '1.0.6'
+
+    networkDependencies = [
+            "com.squareup.retrofit2:retrofit:$retrofit",
+            "com.squareup.retrofit2:adapter-rxjava3:$retrofit",
+            "com.facebook.stetho:stetho-okhttp3:$stetho",
+            "com.squareup.okhttp3:logging-interceptor:$logginginterceptor",
+            "com.squareup.moshi:moshi:$moshi",
+            "com.squareup.moshi:moshi-kotlin:$moshi",
+            "com.squareup.retrofit2:converter-moshi:$retrofit",
+    ]
+
+    networkCompilerDependencies = [
+            "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
+    ]
+
+    roomDependencies = [
+            "androidx.room:room-runtime:$roomVersion",
+            "androidx.room:room-rxjava3:$roomVersion"
+    ]
+
+    roomCompilerDependencies = [
+            "androidx.room:room-compiler:$roomVersion"
+    ]
+
+    roomDebugDependencies = [
+            "com.amitshekhar.android:debug-db:$roomDebugger"
+    ]
+}

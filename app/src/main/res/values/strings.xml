@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ably-Assignment</string>
+    <string name="main_toolbar_title">홈</string>
+    <string name="nav_item_home">홈</string>
+    <string name="nav_home_like">좋아요</string>
+    <string name="badge_new">NEW</string>
+
+    <string formatted="false" name="percent">%d%%</string>
+    <string name="price_format">%,2d</string>
+    <string formatted="false" name="selling_count">%d개 구매중</string>
+</resources>

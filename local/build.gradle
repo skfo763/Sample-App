@@ -1,0 +1,9 @@
+apply from: '../gradle/src/library.gradle'
+apply from: '../gradle/src/load-properties.gradle'
+
+dependencies {
+    implementation rxCoreDependencies
+    api roomDependencies
+    kapt networkCompilerDependencies
+    kapt roomCompilerDependencies
+}

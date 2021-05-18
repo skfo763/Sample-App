@@ -1,0 +1,36 @@
+apply from: "../gradle/src/application.gradle"
+// apply from: "../gradle/src/signing.gradle"
+
+android {
+    bundle {
+        language {
+            enableSplit = false
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    dependencies {
+        implementation(project(':local'))
+        implementation(project(':remote'))
+        implementation(project(':domain'))
+    }
+}

@@ -1,0 +1,58 @@
+ext {
+    prop = retrieveVersionProperties()
+    def major = prop['major'].toString()
+    def minor = prop['minor'].toString()
+    def patch = prop['patch'].toString()
+    def appVersionName = "$major.$minor.$patch"
+    def appVersionCode = (major.toInteger() * 1000000) + (minor.toInteger() * 10000) + patch.toInteger()
+
+    kotlin = '1.4.32'
+    rxJava = '3.0.13-RC4'
+    hiltDagger = '2.35.1'
+    hiltandroid = '1.0.0-alpha03'
+
+    compiler = [
+            javaVersion : JavaVersion.VERSION_1_8,
+            jvmTarget: "1.8",
+            kotlinVersion : "1.4.30"
+    ]
+
+    android = [
+            buildToolsVersion: "30.0.3",
+            minSdk: 23,
+            targetSdk: 30,
+            compileSdk: 30,
+            id: "skfo763.ably.assignment",
+            versionName: appVersionName,
+            versionCode: appVersionCode,
+            testInstrumentationRunner    : "android.support.test.runner.AndroidJUnitRunner"
+    ]
+
+    kotlinDependencies = [
+            "org.jetbrains.kotlin:kotlin-stdlib:$kotlin",
+    ]
+
+    rxCoreDependencies = [
+            "io.reactivex.rxjava3:rxjava:$rxJava"
+    ]
+
+    diDependencies = [
+            "com.google.dagger:hilt-android:$hiltDagger",
+            "androidx.hilt:hilt-common:$hiltandroid"
+    ]
+
+    diCompilerDependencies = [
+            "com.google.dagger:hilt-android-compiler:$hiltDagger",
+            "androidx.hilt:hilt-compiler:$hiltandroid"
+    ]
+}
+
+def retrieveVersionProperties() {
+    def versionProp = file('./gradle/property/version.properties')
+    if(versionProp == null || !versionProp.canRead()) {
+        new GradleException("Cannot read version.properties!")
+    }
+    def properties = new Properties()
+    properties.load(new FileInputStream(versionProp))
+    return properties
+}

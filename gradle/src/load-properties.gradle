@@ -1,0 +1,31 @@
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    def properties = new Properties()
+    properties.load(new FileInputStream(project.rootProject.file('gradle/property/security.properties')))
+
+    defaultConfig {
+        // common value with security protection
+        // watch out! You should not include `security.properties` file to remote repository or
+        // any other network-based version control platform (e.g. Github)
+        def apiUrl = properties.getProperty("api.url")
+        def dbName = properties.getProperty("local.database.name")
+        def dbVersion = properties.getProperty("local.database.version")
+
+        buildConfigField "String", "BASE_URL", "\"$apiUrl\""
+        buildConfigField "String", "LOCAL_DB_NAME", "\"$dbName\""
+        buildConfigField "int", "LOCAL_DB_VERSION", "$dbVersion"
+    }
+
+    buildTypes {
+        // If values in security.properties are different by build types (e.g. release or debug)
+
+        release {
+            // Property in debug
+        }
+        debug {
+            // Property in release
+        }
+    }
+}

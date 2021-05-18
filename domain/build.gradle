@@ -1,0 +1,7 @@
+apply from: '../gradle/src/library.gradle'
+
+dependencies {
+    implementation(project(':base'))
+    implementation(project(':remote'))
+    implementation(project(':local'))
+}

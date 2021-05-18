@@ -1,0 +1,7 @@
+apply from: '../gradle/src/library.gradle'
+apply from: '../gradle/src/load-properties.gradle'
+
+dependencies {
+    api networkDependencies
+    kapt networkCompilerDependencies
+}

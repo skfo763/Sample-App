@@ -1,0 +1,63 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    def ext = rootProject.extensions.ext
+    compileSdkVersion ext.android.compileSdk
+    buildToolsVersion ext.android.buildToolsVersion
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    kotlinOptions {
+        jvmTarget = ext.compiler.jvmTarget
+    }
+
+    compileOptions {
+        sourceCompatibility(ext.compiler.javaVersion)
+        targetCompatibility(ext.compiler.javaVersion)
+    }
+
+    defaultConfig {
+        applicationId ext.android.id
+        versionName ext.android.versionName
+        versionCode ext.android.versionCode
+        minSdkVersion ext.android.minSdk
+        targetSdkVersion ext.android.targetSdk
+        multiDexEnabled true
+
+        ndk {
+            abiFilters("armeabi-v7a", "x86", "arm64-v8a", "x86_64")
+        }
+
+        testInstrumentationRunner = ext.android.testInstrumentationRunner
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+            aaptOptions.cruncherEnabled = false
+            splits.abi.enable = false
+            splits.density.enable = false
+        }
+
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":base")
+
+    implementation diDependencies
+    kapt diCompilerDependencies
+}
